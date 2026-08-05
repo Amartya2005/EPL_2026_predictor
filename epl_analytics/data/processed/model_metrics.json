@@ -1,0 +1,176 @@
+{
+  "classification": {
+    "baseline_majority": {
+      "accuracy": 0.4482758620689655,
+      "majority_class": "H"
+    },
+    "logistic_regression": {
+      "accuracy": 0.27586206896551724,
+      "log_loss": 1.7054124133860853,
+      "f1_macro": 0.274202558516284,
+      "precision_macro": 0.3121251857679867,
+      "recall_macro": 0.2943969610636277,
+      "confusion_matrix": [
+        [
+          7,
+          21,
+          11
+        ],
+        [
+          4,
+          10,
+          13
+        ],
+        [
+          4,
+          10,
+          7
+        ]
+      ],
+      "cv_accuracy_mean": 0.4046511627906977,
+      "cv_accuracy_std": 0.10565410875907483,
+      "cv_scores": [
+        0.6046511627906976,
+        0.3488372093023256,
+        0.4186046511627907,
+        0.32558139534883723,
+        0.32558139534883723
+      ]
+    },
+    "random_forest": {
+      "accuracy": 0.4482758620689655,
+      "log_loss": 1.0613986756844032,
+      "f1_macro": 0.35412953060011887,
+      "precision_macro": 0.38496732026143793,
+      "recall_macro": 0.39221272554605885,
+      "confusion_matrix": [
+        [
+          30,
+          1,
+          8
+        ],
+        [
+          10,
+          2,
+          15
+        ],
+        [
+          11,
+          3,
+          7
+        ]
+      ],
+      "cv_accuracy_mean": 0.4511627906976744,
+      "cv_accuracy_std": 0.08397893062915252,
+      "cv_scores": [
+        0.5813953488372093,
+        0.37209302325581395,
+        0.4883720930232558,
+        0.3488372093023256,
+        0.46511627906976744
+      ]
+    },
+    "xgboost": {
+      "accuracy": 0.41379310344827586,
+      "log_loss": 1.2236729966453732,
+      "f1_macro": 0.3956683956683957,
+      "precision_macro": 0.4170557111733582,
+      "recall_macro": 0.39668973002306335,
+      "confusion_matrix": [
+        [
+          20,
+          7,
+          12
+        ],
+        [
+          5,
+          8,
+          14
+        ],
+        [
+          10,
+          3,
+          8
+        ]
+      ],
+      "cv_accuracy_mean": 0.4558139534883721,
+      "cv_accuracy_std": 0.09138084978785348,
+      "cv_scores": [
+        0.5581395348837209,
+        0.4418604651162791,
+        0.5581395348837209,
+        0.32558139534883723,
+        0.3953488372093023
+      ]
+    }
+  },
+  "regression": {
+    "home_goals": {
+      "mae": 1.0234584691880764,
+      "baseline_mae": 1.006206022464053
+    },
+    "away_goals": {
+      "mae": 0.9281385109342378,
+      "baseline_mae": 0.8406101131943534
+    }
+  },
+  "best_model": "random_forest",
+  "feature_cols": [
+    "home_goals_for_r5",
+    "home_goals_against_r5",
+    "home_points_r5",
+    "home_possessionPct_r5",
+    "home_totalShots_r5",
+    "home_shotsOnTarget_r5",
+    "home_shotPct_r5",
+    "home_accuratePasses_r5",
+    "home_totalPasses_r5",
+    "home_passPct_r5",
+    "home_totalCrosses_r5",
+    "home_crossPct_r5",
+    "home_totalLongBalls_r5",
+    "home_longballPct_r5",
+    "home_effectiveTackles_r5",
+    "home_totalTackles_r5",
+    "home_interceptions_r5",
+    "home_totalClearance_r5",
+    "home_foulsCommitted_r5",
+    "home_yellowCards_r5",
+    "home_season_pts_avg",
+    "home_season_gd_avg",
+    "home_matches_played",
+    "away_goals_for_r5",
+    "away_goals_against_r5",
+    "away_points_r5",
+    "away_possessionPct_r5",
+    "away_totalShots_r5",
+    "away_shotsOnTarget_r5",
+    "away_shotPct_r5",
+    "away_accuratePasses_r5",
+    "away_totalPasses_r5",
+    "away_passPct_r5",
+    "away_totalCrosses_r5",
+    "away_crossPct_r5",
+    "away_totalLongBalls_r5",
+    "away_longballPct_r5",
+    "away_effectiveTackles_r5",
+    "away_totalTackles_r5",
+    "away_interceptions_r5",
+    "away_totalClearance_r5",
+    "away_foulsCommitted_r5",
+    "away_yellowCards_r5",
+    "away_season_pts_avg",
+    "away_season_gd_avg",
+    "away_matches_played"
+  ],
+  "train_range": [
+    "2025-09-13",
+    "2026-03-14"
+  ],
+  "test_range": [
+    "2026-03-14",
+    "2026-05-24"
+  ],
+  "n_train": 263,
+  "n_test": 87
+}

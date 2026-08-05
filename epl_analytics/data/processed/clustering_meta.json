@@ -1,0 +1,14 @@
+{
+  "explained_variance": [
+    0.5875484140723747,
+    0.13919530700667257
+  ],
+  "explained_variance_total": 0.7267437210790473,
+  "cluster_names": {
+    "0": "Direct / Counter-Attacking",
+    "1": "Possession-Based",
+    "2": "Possession-Based (2)",
+    "3": "Direct / Counter-Attacking (2)",
+    "4": "Balanced / Mixed"
+  }
+}

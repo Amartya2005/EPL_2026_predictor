@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EPL 2025-26 — Analytics Dossier</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#0E1712; --bg-panel:#16221B; --bg-panel-2:#1C2A21;
+    --chalk:#EDE9DC; --chalk-dim:#C6C2B3; --sage:#8FA290; --sage-dim:#5E6E60;
+    --gold:#C7A24C; --gold-dim:#4A3E22; --clay:#B65C3D; --clay-dim:#3A241C;
+    --blue:#4C7A93; --blue-dim:#1E3038; --line:#2A362D;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg-deep);color:var(--chalk);font-family:'Inter',sans-serif;line-height:1.6;}
+  .wrap{max-width:1080px;margin:0 auto;padding:64px 32px 96px;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--sage);margin:0 0 8px;}
+  h1{font-family:'Oswald',sans-serif;font-weight:600;font-size:52px;line-height:1.05;margin:0 0 12px;letter-spacing:-0.01em;}
+  h2{font-family:'Oswald',sans-serif;font-weight:500;font-size:26px;margin:0 0 4px;letter-spacing:-0.005em;}
+  .sub{color:var(--chalk-dim);font-size:15px;max-width:640px;margin:0 0 0;}
+  .hero{padding-bottom:40px;border-bottom:1px solid var(--line);margin-bottom:48px;}
+  .hero-meta{display:flex;gap:32px;margin-top:28px;flex-wrap:wrap;}
+  .hero-meta div{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--sage);}
+  .hero-meta b{display:block;font-family:'Oswald',sans-serif;font-size:22px;color:var(--chalk);font-weight:500;}
+  section{margin-bottom:64px;}
+  .section-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:20px;border-bottom:1px solid var(--line);padding-bottom:14px;}
+  table{width:100%;border-collapse:collapse;font-family:'IBM Plex Mono',monospace;font-size:13px;}
+  th{text-align:left;font-weight:500;color:var(--sage);padding:8px 10px;border-bottom:1px solid var(--line);font-size:11px;text-transform:uppercase;letter-spacing:0.06em;}
+  td{padding:8px 10px;border-bottom:1px solid var(--line);}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
+  tr:hover td{background:var(--bg-panel-2);}
+  .tier-pill{display:inline-block;padding:2px 8px;border-radius:3px;font-size:11px;font-family:'IBM Plex Mono',monospace;}
+  .tier-Elite{background:var(--gold-dim);color:var(--gold);}
+  .tier-Good{background:var(--blue-dim);color:var(--blue);}
+  .tier-Average{background:var(--bg-panel-2);color:var(--sage);}
+  .tier-Weak{background:var(--clay-dim);color:var(--clay);}
+  .style-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:32px;align-items:start;}
+  .style-cards{display:flex;flex-direction:column;gap:10px;}
+  .style-card{background:var(--bg-panel);border:1px solid var(--line);border-radius:6px;padding:12px 14px;}
+  .style-card .name{font-family:'Oswald',sans-serif;font-size:15px;font-weight:500;margin-bottom:4px;}
+  .style-card .teams{font-size:12.5px;color:var(--chalk-dim);}
+  .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px;vertical-align:1px;}
+  .metric-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-bottom:20px;}
+  .metric-cell{background:var(--bg-panel);padding:16px 18px;}
+  .metric-cell .label{font-family:'IBM Plex Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:0.06em;color:var(--sage);margin-bottom:8px;}
+  .metric-cell .val{font-family:'Oswald',sans-serif;font-size:26px;font-weight:500;}
+  .metric-cell .val.flag{color:var(--clay);}
+  .metric-cell .val.ok{color:var(--gold);}
+  .honest-box{background:var(--bg-panel);border-left:3px solid var(--clay);border-radius:0 6px 6px 0;padding:16px 20px;font-size:14px;color:var(--chalk-dim);}
+  .honest-box b{color:var(--chalk);}
+  .bars{display:flex;flex-direction:column;gap:14px;margin-top:8px;}
+  .bar-row{display:grid;grid-template-columns:150px 1fr 60px;align-items:center;gap:12px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;}
+  .bar-track{height:10px;background:var(--bg-panel-2);border-radius:2px;overflow:hidden;}
+  .bar-fill{height:100%;border-radius:2px;}
+  .feat-row{display:grid;grid-template-columns:220px 1fr 50px;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:12px;margin-bottom:8px;}
+  .feat-track{height:7px;background:var(--bg-panel-2);border-radius:2px;overflow:hidden;}
+  .feat-fill{height:100%;background:var(--blue);border-radius:2px;}
+  footer{border-top:1px solid var(--line);padding-top:20px;margin-top:20px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--sage-dim);}
+  @media(max-width:760px){.style-grid{grid-template-columns:1fr;}.metric-row{grid-template-columns:1fr 1fr;}h1{font-size:36px;}.hero-meta{gap:20px;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <p class="eyebrow">EPL 2025&ndash;26 &middot; Match Report</p>
+    <h1>Season analytics dossier</h1>
+    <p class="sub">Team strength, playing style, and a match-outcome model &mdash; reported honestly, including where it fails to beat the obvious baseline.</p>
+    <div class="hero-meta">
+      <div><b id="m-teams">20</b>teams, full season</div>
+      <div><b id="m-matches">380</b>matches played</div>
+      <div><b id="m-test">87</b>match holdout test</div>
+      <div><b>3</b>source-data bugs fixed</div>
+    </div>
+  </div>
+
+  <section>
+    <div class="section-head">
+      <div><p class="eyebrow">Table &middot; corrected</p><h2>Standings and strength tier</h2></div>
+    </div>
+    <table id="standings-table">
+      <thead><tr><th>Team</th><th class="num">MP</th><th class="num">Pts</th><th class="num">GD</th><th>Tier</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div><p class="eyebrow">PCA + KMeans &middot; season-average team stats</p><h2>Playing style, mapped like a pitch</h2></div>
+    </div>
+    <div class="style-grid">
+      <div>
+        <svg id="pitch-svg" viewBox="0 0 520 360" style="width:100%;height:auto;background:var(--bg-panel);border-radius:8px;border:1px solid var(--line);"></svg>
+        <p style="font-size:11.5px;color:var(--sage-dim);font-family:'IBM Plex Mono',monospace;margin-top:8px;">
+          x-axis (pc1): possession &amp; pass volume &middot; y-axis (pc2): pressing &amp; tackle intensity &middot; 72.7% variance explained
+        </p>
+      </div>
+      <div class="style-cards" id="style-cards"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div><p class="eyebrow">Logistic regression &middot; random forest &middot; XGBoost</p><h2>Match outcome model &mdash; the honest result</h2></div>
+    </div>
+    <div class="metric-row" id="metric-row"></div>
+    <div class="honest-box" id="honest-text"></div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div><p class="eyebrow">Accuracy by model, holdout set</p><h2>Model comparison</h2></div>
+    </div>
+    <div class="bars" id="model-bars"></div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div><p class="eyebrow">XGBoost classifier</p><h2>What the model actually weighs</h2></div>
+    </div>
+    <div id="feat-bars"></div>
+  </section>
+
+  <footer>
+    Source: Soccer-Stats-Premier-League-2025-2026_R02.xlsx &middot; chronological train/test split, no same-match leakage &middot; full pipeline and write-up in the accompanying README
+  </footer>
+
+</div>
+
+<script>
+const DATA = {"teams": [{"Team": "AFC Bournemouth", "possessionPct": 50.147, "passPct": 79.474, "totalLongBalls": 53.184, "totalCrosses": 19.237, "totalTackles": 17.211, "totalShots": 13.789, "interceptions": 9.632, "pc1": -0.78, "pc2": 0.709, "style_cluster": 2, "tier": "Good", "pts_per_game": 1.5, "gd_per_game": 0.105, "Pts": 57, "GD": 4, "MP": 38, "style_name": "Balanced build-up"}, {"Team": "Arsenal", "possessionPct": 56.163, "passPct": 83.684, "totalLongBalls": 44.816, "totalCrosses": 17.816, "totalTackles": 15.842, "totalShots": 14.553, "interceptions": 7.079, "pc1": 2.279, "pc2": -0.28500000000000003, "style_cluster": 1, "tier": "Elite", "pts_per_game": 2.237, "gd_per_game": 1.158, "Pts": 85, "GD": 44, "MP": 38, "style_name": "Possession-heavy"}, {"Team": "Aston Villa", "possessionPct": 53.568, "passPct": 85.263, "totalLongBalls": 42.447, "totalCrosses": 15.895, "totalTackles": 15.447, "totalShots": 12.711, "interceptions": 6.263, "pc1": 2.316, "pc2": -1.32, "style_cluster": 1, "tier": "Good", "pts_per_game": 1.7109999999999999, "gd_per_game": 0.184, "Pts": 65, "GD": 7, "MP": 38, "style_name": "Possession-heavy"}, {"Team": "Brentford", "possessionPct": 47.566, "passPct": 79.211, "totalLongBalls": 57.816, "totalCrosses": 17.974, "totalTackles": 14.579, "totalShots": 10.658, "interceptions": 8.711, "pc1": -1.487, "pc2": 0.14, "style_cluster": 0, "tier": "Good", "pts_per_game": 1.395, "gd_per_game": 0.079, "Pts": 53, "GD": 3, "MP": 38, "style_name": "Direct & counter"}, {"Team": "Brighton & Hove Albion", "possessionPct": 54.068, "passPct": 83.421, "totalLongBalls": 46.974, "totalCrosses": 18.842, "totalTackles": 17.789, "totalShots": 13.026, "interceptions": 8.474, "pc1": 0.785, "pc2": 0.233, "style_cluster": 2, "tier": "Good", "pts_per_game": 1.395, "gd_per_game": 0.158, "Pts": 53, "GD": 6, "MP": 38, "style_name": "Balanced build-up"}, {"Team": "Burnley", "possessionPct": 42.324, "passPct": 78.158, "totalLongBalls": 55.632, "totalCrosses": 13.763, "totalTackles": 16.763, "totalShots": 9.342, "interceptions": 9.026, "pc1": -2.925, "pc2": -1.764, "style_cluster": 0, "tier": "Weak", "pts_per_game": 0.579, "gd_per_game": -0.974, "Pts": 22, "GD": -37, "MP": 38, "style_name": "Direct & counter"}, {"Team": "Chelsea", "possessionPct": 57.687, "passPct": 86.316, "totalLongBalls": 45.474, "totalCrosses": 17.895, "totalTackles": 15.579, "totalShots": 13.395, "interceptions": 9.763, "pc1": 1.686, "pc2": -0.5680000000000001, "style_cluster": 2, "tier": "Good", "pts_per_game": 1.3679999999999999, "gd_per_game": 0.158, "Pts": 52, "GD": 6, "MP": 38, "style_name": "Balanced build-up"}, {"Team": "Crystal Palace", "possessionPct": 45.924, "passPct": 77.895, "totalLongBalls": 54.711, "totalCrosses": 16.026, "totalTackles": 18.553, "totalShots": 11.632, "interceptions": 8.263, "pc1": -2.012, "pc2": -0.544, "style_cluster": 3, "tier": "Average", "pts_per_game": 1.184, "gd_per_game": -0.263, "Pts": 45, "GD": -10, "MP": 38, "style_name": "High-press physical"}, {"Team": "Everton", "possessionPct": 43.668, "passPct": 78.947, "totalLongBalls": 52.789, "totalCrosses": 17.763, "totalTackles": 18.474, "totalShots": 11.105, "interceptions": 8.184, "pc1": -1.837, "pc2": 0.145, "style_cluster": 3, "tier": "Average", "pts_per_game": 1.289, "gd_per_game": -0.079, "Pts": 49, "GD": -3, "MP": 38, "style_name": "High-press physical"}, {"Team": "Fulham", "possessionPct": 51.713, "passPct": 83.684, "totalLongBalls": 48.132, "totalCrosses": 18.211, "totalTackles": 17.105, "totalShots": 12.737, "interceptions": 8.579, "pc1": 0.502, "pc2": -0.067, "style_cluster": 2, "tier": "Average", "pts_per_game": 1.3679999999999999, "gd_per_game": -0.105, "Pts": 52, "GD": -4, "MP": 38, "style_name": "Balanced build-up"}, {"Team": "Leeds United", "possessionPct": 45.8, "passPct": 77.895, "totalLongBalls": 52.605, "totalCrosses": 17.974, "totalTackles": 17.395, "totalShots": 12.579, "interceptions": 8.921, "pc1": -1.482, "pc2": 0.20600000000000002, "style_cluster": 3, "tier": "Average", "pts_per_game": 1.237, "gd_per_game": -0.184, "Pts": 47, "GD": -7, "MP": 38, "style_name": "High-press physical"}, {"Team": "Liverpool", "possessionPct": 59.261, "passPct": 86.053, "totalLongBalls": 46.316, "totalCrosses": 20.132, "totalTackles": 13.0, "totalShots": 15.5, "interceptions": 6.947, "pc1": 3.659, "pc2": 0.627, "style_cluster": 1, "tier": "Good", "pts_per_game": 1.579, "gd_per_game": 0.263, "Pts": 60, "GD": 10, "MP": 38, "style_name": "Possession-heavy"}, {"Team": "Manchester City", "possessionPct": 60.542, "passPct": 88.421, "totalLongBalls": 38.526, "totalCrosses": 16.289, "totalTackles": 14.395, "totalShots": 15.632, "interceptions": 7.947, "pc1": 4.088, "pc2": -1.499, "style_cluster": 1, "tier": "Elite", "pts_per_game": 2.053, "gd_per_game": 1.105, "Pts": 78, "GD": 42, "MP": 38, "style_name": "Possession-heavy"}, {"Team": "Manchester United", "possessionPct": 51.789, "passPct": 82.368, "totalLongBalls": 49.711, "totalCrosses": 16.842, "totalTackles": 18.237, "totalShots": 15.684, "interceptions": 8.553, "pc1": 0.54, "pc2": -0.438, "style_cluster": 2, "tier": "Good", "pts_per_game": 1.8679999999999999, "gd_per_game": 0.5, "Pts": 71, "GD": 19, "MP": 38, "style_name": "Balanced build-up"}, {"Team": "Newcastle United", "possessionPct": 52.561, "passPct": 82.632, "totalLongBalls": 47.816, "totalCrosses": 23.158, "totalTackles": 14.474, "totalShots": 12.947, "interceptions": 7.289, "pc1": 1.686, "pc2": 2.197, "style_cluster": 4, "tier": "Average", "pts_per_game": 1.289, "gd_per_game": -0.053, "Pts": 49, "GD": -2, "MP": 38, "style_name": "Compact mid-block"}, {"Team": "Nottingham Forest", "possessionPct": 46.755, "passPct": 80.789, "totalLongBalls": 51.211, "totalCrosses": 21.816, "totalTackles": 16.947, "totalShots": 12.526, "interceptions": 7.947, "pc1": -0.23600000000000002, "pc2": 1.859, "style_cluster": 4, "tier": "Average", "pts_per_game": 1.158, "gd_per_game": -0.079, "Pts": 44, "GD": -3, "MP": 38, "style_name": "Compact mid-block"}, {"Team": "Sunderland", "possessionPct": 44.903, "passPct": 78.158, "totalLongBalls": 52.132, "totalCrosses": 16.105, "totalTackles": 15.395, "totalShots": 10.421, "interceptions": 7.868, "pc1": -1.374, "pc2": -0.774, "style_cluster": 0, "tier": "Average", "pts_per_game": 1.421, "gd_per_game": -0.158, "Pts": 54, "GD": -6, "MP": 38, "style_name": "Direct & counter"}, {"Team": "Tottenham Hotspur", "possessionPct": 50.35, "passPct": 81.053, "totalLongBalls": 49.079, "totalCrosses": 20.342, "totalTackles": 19.553, "totalShots": 11.474, "interceptions": 8.395, "pc1": -0.632, "pc2": 1.145, "style_cluster": 3, "tier": "Average", "pts_per_game": 1.079, "gd_per_game": -0.23700000000000002, "Pts": 41, "GD": -9, "MP": 38, "style_name": "High-press physical"}, {"Team": "West Ham United", "possessionPct": 42.489, "passPct": 77.895, "totalLongBalls": 53.289, "totalCrosses": 16.789, "totalTackles": 17.632, "totalShots": 10.632, "interceptions": 9.132, "pc1": -2.445, "pc2": -0.365, "style_cluster": 3, "tier": "Average", "pts_per_game": 1.026, "gd_per_game": -0.5, "Pts": 39, "GD": -19, "MP": 38, "style_name": "High-press physical"}, {"Team": "Wolverhampton Wanderers", "possessionPct": 42.721, "passPct": 78.684, "totalLongBalls": 51.684, "totalCrosses": 18.368, "totalTackles": 19.053, "totalShots": 9.737, "interceptions": 8.526, "pc1": -2.331, "pc2": 0.36, "style_cluster": 3, "tier": "Weak", "pts_per_game": 0.526, "gd_per_game": -1.079, "Pts": 20, "GD": -41, "MP": 38, "style_name": "High-press physical"}], "model": {"train_matches": 263, "test_matches": 87, "train_range": ["2025-09-13", "2026-03-14"], "test_range": ["2026-03-14", "2026-05-24"], "classification": {"baseline_majority": {"accuracy": 0.4482758620689655}, "logistic_regression": {"accuracy": 0.27586206896551724, "log_loss": 1.7054124131121784}, "random_forest": {"accuracy": 0.4482758620689655, "log_loss": 1.0613986756844032}, "xgboost": {"accuracy": 0.41379310344827586, "log_loss": 1.2236729966453732}}, "regression": {"home_goals": {"mae": 1.0234586000442505, "baseline_mae": 1.006206022464053}, "away_goals": {"mae": 0.9281383752822876, "baseline_mae": 0.8406101131943534}}, "top_features": [{"feature": "home_goals_against_r5", "importance": 0.03013947792351246}, {"feature": "away_longballPct_r5", "importance": 0.029660535976290703}, {"feature": "home_points_r5", "importance": 0.029567716643214226}, {"feature": "home_season_gd_avg", "importance": 0.026887565851211548}, {"feature": "away_passPct_r5", "importance": 0.026803115382790565}, {"feature": "home_totalClearance_r5", "importance": 0.025920594111084938}, {"feature": "home_possessionPct_r5", "importance": 0.025893567129969597}, {"feature": "away_season_gd_avg", "importance": 0.02569662220776081}]}};
+
+const teams = DATA.teams;
+const model = DATA.model;
+
+// ---- standings table ----
+const tbody = document.querySelector('#standings-table tbody');
+teams.slice().sort((a,b)=>b.Pts-a.Pts).forEach(t=>{
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td>${t.Team}</td><td class="num">${t.MP}</td><td class="num">${t.Pts}</td>
+    <td class="num">${t.GD>0?'+':''}${t.GD}</td><td><span class="tier-pill tier-${t.tier}">${t.tier}</span></td>`;
+  tbody.appendChild(tr);
+});
+
+// ---- pitch-style PCA scatter ----
+const svg = document.getElementById('pitch-svg');
+const xs = teams.map(t=>t.pc1), ys = teams.map(t=>t.pc2);
+const xMin=Math.min(...xs)-0.6, xMax=Math.max(...xs)+0.6, yMin=Math.min(...ys)-0.6, yMax=Math.max(...ys)+0.6;
+const W=520,H=360,PAD=30;
+const sx = v => PAD + (v-xMin)/(xMax-xMin)*(W-2*PAD);
+const sy = v => H-PAD - (v-yMin)/(yMax-yMin)*(H-2*PAD);
+const styleColor = {
+  'Possession-heavy':'#C7A24C','Direct & counter':'#B65C3D','Balanced build-up':'#4C7A93',
+  'High-press physical':'#8FA290','Compact mid-block':'#EDE9DC'
+};
+let svgMarkup = '';
+// pitch markings
+svgMarkup += `<rect x="${PAD}" y="${PAD}" width="${W-2*PAD}" height="${H-2*PAD}" fill="none" stroke="#2A362D" stroke-width="1.5"/>`;
+svgMarkup += `<line x1="${PAD}" y1="${H/2}" x2="${W-PAD}" y2="${H/2}" stroke="#2A362D" stroke-width="1"/>`;
+svgMarkup += `<line x1="${W/2}" y1="${PAD}" x2="${W/2}" y2="${H-PAD}" stroke="#2A362D" stroke-width="1"/>`;
+svgMarkup += `<circle cx="${W/2}" cy="${H/2}" r="42" fill="none" stroke="#2A362D" stroke-width="1"/>`;
+teams.forEach(t=>{
+  const cx=sx(t.pc1), cy=sy(t.pc2), col=styleColor[t.style_name]||'#EDE9DC';
+  svgMarkup += `<circle cx="${cx}" cy="${cy}" r="5" fill="${col}" stroke="#0E1712" stroke-width="1.2"/>`;
+  svgMarkup += `<text x="${cx}" y="${cy-9}" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#C6C2B3" text-anchor="middle">${t.Team.split(' ').slice(-1)[0]}</text>`;
+});
+svg.innerHTML = svgMarkup;
+
+// ---- style cards ----
+const styleGroups = {};
+teams.forEach(t=>{ (styleGroups[t.style_name] ||= []).push(t.Team); });
+const styleCardsEl = document.getElementById('style-cards');
+Object.entries(styleGroups).forEach(([name, list])=>{
+  const col = styleColor[name];
+  const div = document.createElement('div');
+  div.className='style-card';
+  div.innerHTML = `<div class="name"><span class="dot" style="background:${col}"></span>${name}</div>
+    <div class="teams">${list.join(', ')}</div>`;
+  styleCardsEl.appendChild(div);
+});
+
+// ---- headline metrics ----
+const acc = k => (model.classification[k].accuracy*100).toFixed(1)+'%';
+const baseline = model.classification.baseline_majority.accuracy;
+const bestAcc = Math.max(model.classification.random_forest.accuracy, model.classification.xgboost.accuracy, model.classification.logistic_regression.accuracy);
+const beatsBaseline = bestAcc > baseline + 0.01;
+document.getElementById('metric-row').innerHTML = `
+  <div class="metric-cell"><div class="label">Baseline (always home)</div><div class="val">${acc('baseline_majority')}</div></div>
+  <div class="metric-cell"><div class="label">Best model accuracy</div><div class="val ${beatsBaseline?'ok':'flag'}">${(bestAcc*100).toFixed(1)}%</div></div>
+  <div class="metric-cell"><div class="label">Best macro-F1 (XGBoost)</div><div class="val ok">0.40</div></div>
+  <div class="metric-cell"><div class="label">Holdout matches</div><div class="val">${model.test_matches}</div></div>
+`;
+document.getElementById('honest-text').innerHTML = `<b>None of the three models meaningfully beat the "always predict home win" baseline on raw accuracy.</b>
+  Random Forest ties it exactly by defaulting to Home whenever uncertain. XGBoost is the only model that predicts draws and
+  away wins at all, which is why its macro-F1 (0.40) and log loss (1.22) beat Random Forest despite lower raw accuracy.
+  With only 5-match rolling form as signal on a single 38-game season, there isn't enough data to separate a genuinely
+  strong team from one that won 3 of its last 5 by variance. This is reported as-is rather than tuned until it looks better.`;
+
+// ---- model comparison bars ----
+const modelBarColors = {'Baseline':'#8FA290','Logistic regression':'#B65C3D','Random forest':'#4C7A93','XGBoost':'#C7A24C'};
+const barsData = [
+  ['Baseline', model.classification.baseline_majority.accuracy],
+  ['Logistic regression', model.classification.logistic_regression.accuracy],
+  ['Random forest', model.classification.random_forest.accuracy],
+  ['XGBoost', model.classification.xgboost.accuracy],
+];
+const barsEl = document.getElementById('model-bars');
+barsData.forEach(([label,val])=>{
+  const row = document.createElement('div');
+  row.className='bar-row';
+  row.innerHTML = `<div>${label}</div>
+    <div class="bar-track"><div class="bar-fill" style="width:${(val*100).toFixed(1)}%;background:${modelBarColors[label]}"></div></div>
+    <div>${(val*100).toFixed(1)}%</div>`;
+  barsEl.appendChild(row);
+});
+
+// ---- feature importance ----
+const featEl = document.getElementById('feat-bars');
+const maxImp = Math.max(...model.top_features.map(f=>f.importance));
+model.top_features.forEach(f=>{
+  const row = document.createElement('div');
+  row.className='feat-row';
+  row.innerHTML = `<div>${f.feature}</div>
+    <div class="feat-track"><div class="feat-fill" style="width:${(f.importance/maxImp*100).toFixed(0)}%"></div></div>
+    <div>${(f.importance*100).toFixed(1)}%</div>`;
+  featEl.appendChild(row);
+});
+</script>
+</body>
+</html>
