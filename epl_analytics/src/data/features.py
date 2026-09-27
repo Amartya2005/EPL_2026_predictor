@@ -41,7 +41,12 @@ def _long_format(matches: pd.DataFrame) -> pd.DataFrame:
     away.columns = ["date", "team", "opponent", "goals_for", "goals_against"] + STAT_COLS
     away["is_home"] = 0
 
-    long_df = pd.concat([home, away], ignore_index=True).sort_values(["team", "date"])
+    # Stable sorting makes feature generation deterministic when the source
+    # workbook contains multiple fixtures on the same calendar date.
+    long_df = pd.concat([home, away], ignore_index=True).sort_values(
+        ["team", "date"],
+        kind="mergesort",
+    )
     long_df["points"] = np.select(
         [long_df.goals_for > long_df.goals_against, long_df.goals_for == long_df.goals_against],
         [3, 1], default=0)
